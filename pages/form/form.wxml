@@ -1,0 +1,61 @@
+<view class="container">
+
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+    <van-block title="基本信息">
+      <van-cell-group>
+        <van-field value="{{ customer.name }}" name="name" clearable label="姓名" />
+        <van-field value="{{ customer.phone }}" name="phone" clearable label="电话" />
+        <van-field value="{{ customer.weixin }}" name="weixin" clearable label="微信" />
+        <van-field value="{{ customer.base_info }}" name="base_info" autosize type="textarea" clearable label="基本情况" />
+      </van-cell-group>
+    </van-block>
+    <van-block title="试骑">
+      <van-cell-group>
+      <picker mode="date" value="{{customer.try_date}}" data-key="customer.try_date" bindchange="bindDateChange">
+        <van-field value="{{ customer.try_date }}" name="try_date" clearable label="试骑时间" />
+      </picker>
+        <van-field value="{{ customer.reception }}" name="reception" clearable label="接待人" />
+        <van-field value="{{ customer.try_info }}" name="try_info" autosize type="textarea" clearable label="试骑情况" />
+      </van-cell-group>
+    </van-block>
+    <van-block title="办卡">
+      <van-cell-group>
+        <van-field value="{{ customer.card_no }}" name="card_no" clearable label="卡号" />
+        <van-field value="{{ customer.card_money }}" name="card_money" type="number" clearable label="金额" />
+        <van-field value="{{ customer.card_info }}" name="card_info" autosize type="textarea" clearable label="办卡情况" />
+      </van-cell-group>
+    </van-block>
+    <van-block title="续卡">
+      <block wx:for='{{customer.renew}}' wx:key="index">
+      <van-cell-group>
+        <picker mode="date" value="{{item.renew_date}}" data-key="customer.renew[{{index}}].renew_date" bindchange="bindDateChange">
+        <van-field value="{{ item.renew_date }}" name="renew{{index}}.renew_date" clearable label="续卡时间" />
+        </picker>
+        <van-field value="{{ item.renew_money }}" name="renew{{index}}.renew_money" type="number" clearable label="金额" />
+        <van-field value="{{ item.renew_info }}" name="renew{{index}}.renew_info" autosize type="textarea" clearable label="续卡情况" />
+      </van-cell-group>
+      </block>
+      <van-icon wx:if="{{renew_add_show}}" name='add-o' size='20px' custom-style='margin-top:-100rpx;margin-left:680rpx;' data-key="customer.renew" bind:click="addRenew"/>
+    </van-block>
+    <van-row>
+        <van-radio-group value="{{ customer.status }}" name="status" data-key="customer.status" bind:change="onStatusChange" >
+        <van-col span="8">
+            <van-radio name="未试骑" checked-color="#4b0">未试骑</van-radio>
+        </van-col>
+        <van-col span="8">
+            <van-radio name="未签单" checked-color="#4b0">未签单(已试)</van-radio>
+        </van-col>
+        <van-col span="8">
+            <van-radio name="已签单" checked-color="#4b0">已签单</van-radio>
+        </van-col>
+        </van-radio-group>
+    </van-row>
+
+      <view class="btn-area">
+        <button type="primary"  formType="submit">保存</button>
+      </view>
+    </form>
+  </view>
+
+</view>

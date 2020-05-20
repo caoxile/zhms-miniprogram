@@ -1,0 +1,12 @@
+<!--  -->
+<template name='row-cell'>
+  <view class='row-cell {{disabled?"":"btn-bg"}}' bindtap='{{bindTap}}'>
+    <view class='row-left'>
+      <image class='row-icon' src='/assets/images/tab_usercenter_unchecked.png' mode='widthFix'></image>
+      <text>{{name}} : {{phone}}</text>
+    </view>
+    <view class='row-right' bindtap='bindPhoneCall' data-id='{{phone}}'>
+      <image class='row-icon' src='/assets/images/phone.png' mode='widthFix' ></image>
+    </view>
+  </view>
+</template>

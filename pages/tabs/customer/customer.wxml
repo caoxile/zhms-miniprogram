@@ -1,0 +1,53 @@
+<import src='/pages/common/customer/customerRow' />
+<import src='/pages/common/loading/loading' />
+
+<view class='container page-theatre'>
+  <view class='navbar'>
+    <navigator url='/pages/form/form' hover-class='none'>
+        <van-icon name='add-o' size='30px' custom-style='margin-top:10px;margin-left:-120rpx'/>
+    </navigator>
+    <view class='{{currentNav==0?"active":""}}' bindtap='changeSwiper' data-nav='{{0}}'>未试骑</view>
+    <view class='divider'></view>
+    <view class='{{currentNav==1?"active":""}}' bindtap='changeSwiper' data-nav='{{1}}'>未签单</view>
+    <view class='divider'></view>
+    <view class='{{currentNav==2?"active":""}}' bindtap='changeSwiper' data-nav='{{2}}'>已签单</view>
+  </view>
+  <swiper class='swiper' bindchange='onSwiperChange' current='{{currentNav}}'>
+    <swiper-item>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='untry' enable-back-to-top>
+        <view class='boss'>暂无</view>
+        <block wx:for='{{untryCustomers}}' wx:key="_id">
+            <template
+              is="item-customer_row"
+              data="{{...item}}">
+            </template>
+        </block>
+        <template is='loading-more' wx:if='{{loadmore1}}' />
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='unsign' enable-back-to-top>
+        <view class='boss'>暂无</view>
+        <block wx:for='{{unsignCustomers}}' wx:key="_id">
+            <template
+              is="item-customer_row"
+              data="{{...item}}">
+            </template>
+        </block>
+        <template is='loading-more' wx:if='{{loadmore2}}' />
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='signed' enable-back-to-top>
+        <view class='boss'>暂无</view>
+        <block wx:for='{{signedCustomers}}' wx:key="_id">
+            <template
+              is="item-customer_row"
+              data="{{...item}}">
+            </template>
+        </block>
+        <template is='loading-more' wx:if='{{loadmore3}}' />
+        </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

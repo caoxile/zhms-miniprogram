@@ -1,0 +1,40 @@
+<template name="item-customer_row">
+  <view class="customer-row">
+    <view class='row-cell'>
+        <view class='row-left'>
+            <button type="primary" size="mini" plain="true" >{{status}}</button>
+        </view>
+        <view class='row-right' bindtap='bindPhoneCall' data-id='{{phone}}'>
+                <van-icon name='phone' size='25px' custom-style='margin-left:50rpx'/>
+        </view>
+    </view>
+    <navigator class='look' hover-class='hover-opacity' url='/pages/form/form?_id={{_id}}'>
+      <view><text class='subtext'>姓名: {{name?name:''}}</text> </view>
+      <view><text class='subtext'>电话: {{phone?phone:''}}</text> </view>
+      <view><text class='subtext'>微信: {{weixin?weixin:''}}</text> </view>
+      <text class='subtext'>基本情况: {{base_info?base_info:''}}</text>
+      <view wx:if='{{status!="未试骑"}}'>
+          <view class="divLine"></view>
+          <view><text class='subtext'>试骑时间: {{try_date}}</text></view>
+          <view><text class='subtext'>接待: {{reception}}</text></view>
+          <view><text class='subtext'>试骑情况: {{try_info?try_info:''}}</text></view>
+      </view>
+      <view wx:if='{{status=="已签单"}}' class="item-info">
+          <view class="divLine"></view>
+          <view><text class='subtext'>卡号: {{card_no}}</text></view>
+          <view><text class='subtext'>金额: {{card_money}}</text></view>
+          <view><text class='subtext'>办卡情况: {{card_info}}</text></view>
+      </view>
+      <view wx:if='{{renew.length>0}}' class="item-info">
+          <view class="divLine"></view>
+          <block wx:for='{{renew}}' wx:key='{{}}'>
+            <view wx:if='{{item.renew_date}}'>
+            <view><text class='subtext'>续费时间: {{item.renew_date}}</text></view>
+            <view><text class='subtext'>金额: {{item.renew_money}}</text></view>
+            <view><text class='subtext'>续卡情况: {{item.renew_info}}</text></view>
+            </view>
+          </block>
+      </view>
+    </navigator>
+  </view>
+</template>

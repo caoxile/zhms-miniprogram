@@ -1,0 +1,42 @@
+<!--发现-->
+<import src="/pages/common/circle/circle"/>
+
+<view class='container page-discovery'>
+  <navigator url='/pages/search/search' hover-class='none'>
+    <view class='search-bar'>
+      <view class='search-radius btn-opacity'>
+        <icon type='search' size='14'></icon>
+        <text>搜索</text>
+      </view>
+    </view>
+  </navigator>
+  
+  <view class='content'>
+    <scroll-view scroll-y enable-back-to-top>
+
+      <view class='text-header'>
+        <text>2020年目标60万</text>
+      </view>
+      <van-progress pivot-text="{{yearMoneyOfSign1+yearMoneyOfSign2+yearMoneyOfRenew}}" color="#496069" percentage="{{(yearMoneyOfSign1+yearMoneyOfSign2+yearMoneyOfRenew)*100/600000}}"/>
+
+      <view class="kind-container">
+        <navigator class='item-container' hover-class='hover-bg' url='/pages/customer/monthNewAdd/index' >
+          <template is="circle" data="{{data:monthNewAdd,title:'本月新加客户'}}" />
+        </navigator>
+        <navigator class='item-container' hover-class='hover-bg' url='/pages/customer/monthNewTry/index' >
+          <template is="circle" data="{{data:monthNewTry,title:'本月试骑客户'}}" />
+        </navigator>
+        <navigator class='item-container' hover-class='hover-bg' url='/pages/customer/monthMoney/index' >
+          <template is="circle2" data="{{data:monthMoneyOfSign+monthMoneyOfRenew,title:'本月业绩'}}" />
+        </navigator>
+      </view>
+
+      <block wx:for='{{images}}' wx:key='id'>
+        <view class='item-article' style='margin-top:20px' bindtap='onImagePre' data-img='{{item}}'>
+            <comp-preImg src='{{item}}' mode='widthFix' height='350rpx' />
+        </view>
+      </block>
+
+    </scroll-view>
+  </view>
+</view>

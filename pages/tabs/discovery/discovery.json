@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "comp-preImg": "/components/pre-image/PreImage",
+    "van-progress": "/components/progress/index"
+  }
+}

@@ -1,0 +1,34 @@
+<!--pages/search/search.wxml-->
+<import src='/pages/common/customer/customerRow' />
+<import src='/pages/common/loading/loading' />
+
+<view class='container page-search'>
+  <view class='content'>
+    <scroll-view scroll-y bindscrolltolower='loadMore'
+      enable-back-to-top scroll-top='0' scroll-with-animation
+    >
+      <view wx:if='{{monthNewSign.length>0}}'>
+        <view>新签单</view>
+        <block wx:for='{{monthNewSign}}' wx:key='_id'>
+            <template
+              is="item-customer_row"
+              data="{{...item}}">
+            </template>
+        </block>
+      </view>
+      <view wx:if='{{monthRenew.length>0}}'>
+        <view>续费</view>
+        <block wx:for='{{monthRenew}}' wx:key='_id'>
+            <template
+              is="item-customer_row"
+              data="{{...item}}">
+            </template>
+        </block>
+      </view>
+      <view wx:if='{{monthNewSign.length<=0&&monthRenew.length<=0}}' class='none'>
+        <image src='/assets/images/search_empty_icon.png' mode='widthFix' />
+        <text>暂无数据</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

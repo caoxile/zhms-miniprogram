@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "本月业绩",
+  "disableScroll": true,
+  "usingComponents": {
+    "van-icon": "/components/icon/index"
+  }
+}
