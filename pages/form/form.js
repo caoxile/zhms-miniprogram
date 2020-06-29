@@ -24,7 +24,6 @@ Page({
       db.collection('customer').where({
           _id:_id
       }).get().then(res => {
-          console.log(res.data[0]);
           that.setData({
             customer:res.data[0]
           })
@@ -74,13 +73,22 @@ Page({
               delete data[renew_info];
           }
           data.renew = renew;
-          console.log(data);
           if(this.data._id){
-              // data._openid = this.data.customer._openid;
-              // console.log(data._openid);
-              wx.cloud.callFucntion({
+              wx.cloud.callFunction({
                   name:'updateCustomer',
-                  data:data
+                  data:{_id:this.data._id,data:data}
+              }).then(res=>{
+                  wx.showToast({
+                  title: '成功',
+                  icon: 'success',
+                  duration: 1000
+                  })
+              }).catch(err=>{
+                 wx.showToast({
+                  title: '失败',
+                  icon: 'error',
+                  duration: 1000
+                 })
               })
               // db.collection('customer').doc(this.data._id).update({
               //     data: data
